@@ -1,0 +1,16 @@
+<div *ngIf="result === undefined && query !== ''">
+  Loading...
+</div>
+<div *ngIf="result !== undefined">
+  <p><strong>Pages:</strong> {{ result.pages }}</p>
+  <p><strong>Total results:</strong> {{ result.totalResults }}</p>
+
+  <dl class="text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
+    <div *ngFor="let entry of entries">
+      <div class="flex flex-col py-1">
+        <dd class="text-lg font-medium">{{ entry[0] }}</dd>
+        <dt class="text-gray-500 md:text-lg dark:text-gray-400">{{ entry[1] }}</dt>
+      </div>
+    </div>
+  </dl>
+</div>

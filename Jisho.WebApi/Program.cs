@@ -27,6 +27,8 @@ public class Program
             app.UseSwaggerUI();
         }
 
+        app.UseCors(options => options.AllowAnyOrigin());
+
         app.UseHttpsRedirection();
 
         app.UseAuthorization();
