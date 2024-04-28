@@ -18,10 +18,10 @@ public class WeblioParser
     {
         var client = _httpClientFactory.CreateClient();
         var url = string.Format(SentenceUrl, query, page);
-        var response = await client.GetStringAsync(url);
+        var response = await client.GetStreamAsync(url);
 
         var htmlDocument = new HtmlDocument();
-        htmlDocument.LoadHtml(response);
+        htmlDocument.Load(response);
 
         var totalResults =
             Convert.ToInt32(htmlDocument.DocumentNode.SelectSingleNode("//p[@class=\"qotHTR\"]//b").InnerText);

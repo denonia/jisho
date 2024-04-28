@@ -14,7 +14,7 @@ public class WeblioController : ControllerBase
         _weblioParser = weblioParser;
     }
 
-    [HttpGet]
+    [HttpGet("sentences")]
     public async Task<IActionResult> GetSentences(string query, int page = 1)
     {
         return Ok(await _weblioParser.GetSentences(query, page));

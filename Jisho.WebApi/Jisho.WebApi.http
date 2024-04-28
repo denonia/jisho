@@ -1,6 +1,6 @@
 @Jisho.WebApi_HostAddress = http://localhost:5284
 
-GET {{Jisho.WebApi_HostAddress}}/weblio?query=視線&page=54
+GET {{Jisho.WebApi_HostAddress}}/weblio/sentences?query=視線&page=5
 Accept: application/json
 
 ###
