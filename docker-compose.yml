@@ -1,0 +1,6 @@
+﻿services:
+  jisho.webapi:
+    image: jisho.webapi
+    build:
+      context: .
+      dockerfile: Jisho.WebApi/Dockerfile

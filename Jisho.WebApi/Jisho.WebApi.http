@@ -1,0 +1,6 @@
+@Jisho.WebApi_HostAddress = http://localhost:5284
+
+GET {{Jisho.WebApi_HostAddress}}/weblio/
+Accept: application/json
+
+###
