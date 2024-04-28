@@ -4,3 +4,6 @@ GET {{Jisho.WebApi_HostAddress}}/weblio/sentences?query=視線&page=5
 Accept: application/json
 
 ###
+GET {{Jisho.WebApi_HostAddress}}/dictionary?query=辞書
+Accept: application/json
+

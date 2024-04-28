@@ -19,6 +19,7 @@ public class Program
         
         builder.Services.AddHttpClient();
         builder.Services.AddScoped<WeblioParser>();
+        builder.Services.AddScoped<DictionaryService>();
 
         builder.Services.AddDbContext<AppDbContext>(options => 
             options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
