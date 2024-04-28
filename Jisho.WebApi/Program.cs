@@ -1,3 +1,5 @@
+using Jisho.WebApi.Services;
+
 namespace Jisho.WebApi;
 
 public class Program
@@ -14,6 +16,7 @@ public class Program
         builder.Services.AddSwaggerGen();
         
         builder.Services.AddHttpClient();
+        builder.Services.AddScoped<WeblioParser>();
 
         var app = builder.Build();
 

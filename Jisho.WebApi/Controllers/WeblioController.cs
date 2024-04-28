@@ -1,3 +1,4 @@
+using Jisho.WebApi.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Jisho.WebApi.Controllers;
@@ -6,20 +7,16 @@ namespace Jisho.WebApi.Controllers;
 [Route("[controller]")]
 public class WeblioController : ControllerBase
 {
-    private readonly IHttpClientFactory _httpClientFactory;
+    private readonly WeblioParser _weblioParser;
 
-    public WeblioController(IHttpClientFactory httpClientFactory)
+    public WeblioController(WeblioParser weblioParser)
     {
-        _httpClientFactory = httpClientFactory;
+        _weblioParser = weblioParser;
     }
-    
+
     [HttpGet]
-    public async Task<IActionResult> GetTerms()
+    public async Task<IActionResult> GetSentences(string query, int page = 1)
     {
-        var client = _httpClientFactory.CreateClient();
-
-        var response = await client.GetStringAsync("https://ejje.weblio.jp/sentence/content/密度");
-
-        return Ok(response);
+        return Ok(await _weblioParser.GetSentences(query, page));
     }
 }
