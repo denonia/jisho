@@ -11,11 +11,13 @@ public class SentencesController : ControllerBase
 {
     private readonly WeblioParser _weblioParser;
     private readonly ReversoService _reversoService;
+    private readonly TatoebaService _tatoebaService;
 
-    public SentencesController(WeblioParser weblioParser, ReversoService reversoService)
+    public SentencesController(WeblioParser weblioParser, ReversoService reversoService, TatoebaService tatoebaService)
     {
         _weblioParser = weblioParser;
         _reversoService = reversoService;
+        _tatoebaService = tatoebaService;
     }
 
     [HttpGet("weblio")]
@@ -38,6 +40,29 @@ public class SentencesController : ControllerBase
         {
             Pages = context.Npages ?? 1,
             TotalResults = context.Nrows ?? 0,
+            Entries = entries
+        };
+
+        return Ok(response);
+    }
+
+    [HttpGet("tatoeba")]
+    public async Task<IActionResult> GetTatoebaSentences(string query, int page = 1)
+    {
+        var result = await _tatoebaService.GetSentences(query, page);
+
+        var entries = result.Results
+            .Select(x => (x.Text, x.Translations[0][0].Text))
+            .DistinctBy(x => x.Item1)
+            .ToDictionary();
+
+        var totalResults = result.Paging.Sentences.Count ?? 0;
+        var perPage = result.Paging.Sentences.PerPage ?? 10;
+
+        var response = new SentencesResponse
+        {
+            TotalResults = totalResults,
+            Pages = (totalResults - 1) / perPage + 1,
             Entries = entries
         };
 

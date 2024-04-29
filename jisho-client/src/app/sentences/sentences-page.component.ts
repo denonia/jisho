@@ -22,7 +22,7 @@ export class SentencesPageComponent {
     this.route.queryParams.subscribe(params => {
         this.query.set(params['query'] ?? '');
         this.page.set(parseInt(params['page']) || 1);
-        this.source.set(params['source'] ?? 'reverso');
+        this.source.set(params['source'] ?? 'tatoeba');
 
         if (this.query() != '') {
           switch (this.source()) {
@@ -31,6 +31,9 @@ export class SentencesPageComponent {
               break;
             case "weblio":
               this.sentencesList$ = this.store.getWeblioList(this.query(), this.page());
+              break;
+            case "tatoeba":
+              this.sentencesList$ = this.store.getTatoebaList(this.query(), this.page());
               break;
           }
         }

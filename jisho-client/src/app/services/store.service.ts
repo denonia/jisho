@@ -21,4 +21,8 @@ export class StoreService {
   getReversoList(query: string, page: number): Observable<SentencesList> {
     return this.http.get<SentencesList>(`http://localhost:5284/sentences/reverso?query=${query}&page=${page}`);
   }
+
+  getTatoebaList(query: string, page: number): Observable<SentencesList> {
+    return this.http.get<SentencesList>(`http://localhost:5284/sentences/tatoeba?query=${query}&page=${page}`);
+  }
 }

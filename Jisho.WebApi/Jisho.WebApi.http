@@ -10,3 +10,7 @@ Accept: application/json
 ###
 GET {{Jisho.WebApi_HostAddress}}/sentences/reverso?query=隠蔽&page=23
 Accept: application/json
+
+###
+GET {{Jisho.WebApi_HostAddress}}/sentences/tatoeba?query=謎&page=1
+Accept: application/json

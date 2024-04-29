@@ -20,6 +20,7 @@ public class Program
         builder.Services.AddHttpClient();
         builder.Services.AddScoped<WeblioParser>();
         builder.Services.AddScoped<ReversoService>();
+        builder.Services.AddScoped<TatoebaService>();
         builder.Services.AddScoped<DictionaryService>();
 
         builder.Services.AddDbContext<AppDbContext>(options => 
