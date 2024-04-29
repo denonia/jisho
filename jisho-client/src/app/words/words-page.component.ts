@@ -18,8 +18,7 @@ export class WordsPageComponent {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-        if ('query' in params)
-          this.query.set(params['query']);
+        this.query.set(params['query'] ?? '');
         if (this.query() != '')
           this.wordsList$ = this.store.getWordsList(this.query());
       }

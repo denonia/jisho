@@ -1,9 +1,6 @@
-<div *ngIf="weblioList() == null">
-  Loading...
-</div>
-<div *ngIf="weblioList() !== null">
-  <p><strong>Pages:</strong> {{ weblioList()!.pages }}</p>
-  <p><strong>Total results:</strong> {{ weblioList()!.totalResults }}</p>
+<div *ngIf="sentencesList() !== null">
+  <p><strong>Pages:</strong> {{ sentencesList()!.pages }}</p>
+  <p><strong>Total results:</strong> {{ sentencesList()!.totalResults }}</p>
 
   <dl class="text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
     <div *ngFor="let entry of entries()">

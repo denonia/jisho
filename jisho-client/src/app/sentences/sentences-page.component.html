@@ -16,7 +16,41 @@
   <!--  </button>-->
 </div>
 
-<app-weblio-list
-  *ngIf="query() != ''"
-  [weblioList]="weblioList$ | async"
-/>
+<div class="inline-flex rounded-md shadow-sm my-2">
+  <a
+    (click)="switchSource('reverso')"
+    [ngClass]="{ 'text-blue-700 dark:text-blue-500': source() === 'reverso' }"
+    class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+    Reverso
+  </a>
+  <a
+    (click)="switchSource('weblio')"
+    [ngClass]="{ 'text-blue-700 dark:text-blue-500': source() === 'weblio' }"
+    class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+    Weblio
+  </a>
+</div>
+
+<div *ngIf="query() != ''">
+  <div *ngIf="(sentencesList$ | async) as sentencesList; else loading">
+    <app-sentences-list
+      [sentencesList]="sentencesList"
+    />
+    <div class="mt-4 mb-8">
+      <a
+        *ngIf="page() > 1"
+        (click)="previousPage()"
+        class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+        < </a>
+      <a
+        (click)="nextPage()"
+        *ngIf="sentencesList.pages > page()"
+        class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+        > </a>
+    </div>
+  </div>
+  <ng-template #loading>
+    Loading...
+  </ng-template>
+</div>
+

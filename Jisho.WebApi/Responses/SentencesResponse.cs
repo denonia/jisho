@@ -1,6 +1,6 @@
 namespace Jisho.WebApi.Responses;
 
-public class WeblioSentencesResponse
+public class SentencesResponse
 {
     public required int TotalResults { get; set; }
     public required int Pages { get; set; }

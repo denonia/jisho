@@ -1,8 +1,8 @@
-import {Component, inject, signal} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {Component, Signal, inject, signal} from '@angular/core';
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {StoreService} from '../services/store.service';
 import {Observable} from "rxjs";
-import {WeblioList} from '../models/weblio-list.model';
+import {SentencesList} from '../models/sentences-list.model';
 
 @Component({
   templateUrl: './sentences-page.component.html',
@@ -10,28 +10,54 @@ import {WeblioList} from '../models/weblio-list.model';
 export class SentencesPageComponent {
   query = signal('');
   page = signal(1);
+  source = signal('reverso');
 
   store = inject(StoreService);
   router = inject(Router);
   route = inject(ActivatedRoute);
 
-  weblioList$!: Observable<WeblioList>;
+  sentencesList$!: Observable<SentencesList>;
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-        if ('query' in params)
-          this.query.set(params['query']);
-        if (this.query() != '')
-          this.weblioList$ = this.store.getWeblioList(this.query(), this.page());
+        this.query.set(params['query'] ?? '');
+        this.page.set(parseInt(params['page']) ?? 1);
+        this.source.set(params['source'] ?? 'reverso');
+
+        if (this.query() != '') {
+          switch (this.source()) {
+            case "reverso":
+              this.sentencesList$ = this.store.getReversoList(this.query(), this.page());
+              break;
+            case "weblio":
+              this.sentencesList$ = this.store.getWeblioList(this.query(), this.page());
+              break;
+          }
+        }
       }
     );
   }
 
   search(e: Event) {
+    this.setParams({'query': (e.target as HTMLInputElement).value, 'page': '1'});
+  }
+
+  switchSource(source: string) {
+    this.setParams({'source': source, 'page': '1'});
+  }
+
+  previousPage() {
+    this.setParams({page: (this.page() - 1).toString()});
+  }
+
+  nextPage() {
+    this.setParams({page: (this.page() + 1).toString()});
+  }
+
+  private setParams(params: Params) {
     this.router.navigate(['.'], {
-      relativeTo: this.route, queryParams: {
-        query: (e.target as HTMLInputElement).value
-      }
+      queryParamsHandling: 'merge',
+      relativeTo: this.route, queryParams: params
     });
   }
 }
