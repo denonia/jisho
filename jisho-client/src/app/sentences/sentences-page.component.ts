@@ -21,7 +21,7 @@ export class SentencesPageComponent {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
         this.query.set(params['query'] ?? '');
-        this.page.set(parseInt(params['page']) ?? 1);
+        this.page.set(parseInt(params['page']) || 1);
         this.source.set(params['source'] ?? 'reverso');
 
         if (this.query() != '') {
