@@ -1,0 +1,16 @@
+<div *ngIf="wordsList() == null">
+  Loading...
+</div>
+<div *ngIf="wordsList() !== null">
+
+  <p>Matches: <strong> {{ wordsList()!.length }} </strong></p>
+
+  <dl class="term-list">
+    <div class="entry" *ngFor="let entry of wordsList()">
+      <dt class="term">{{ entry.term }}</dt>
+      <dd class="reading">{{ entry.reading }}</dd>
+
+      <div [innerHTML]="renderDefinitions(entry.definitions)"></div>
+    </div>
+  </dl>
+</div>

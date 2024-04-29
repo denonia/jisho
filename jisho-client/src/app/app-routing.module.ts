@@ -6,7 +6,7 @@ import { SentencesPageComponent } from './sentences/sentences-page.component';
 const routes: Routes = [
   { path: 'words', component: WordsPageComponent },
   { path: 'sentences', component: SentencesPageComponent },
-  { path: '',   redirectTo: '/words', pathMatch: 'full' }
+  { path: '', redirectTo: 'words', pathMatch: 'full' }
 ];
 
 @NgModule({
