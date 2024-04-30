@@ -1,0 +1,16 @@
+@Jisho.DesuApi_HostAddress = http://localhost:5043
+
+GET {{Jisho.DesuApi_HostAddress}}/kanji/radicals
+Accept: application/json
+
+###
+GET {{Jisho.DesuApi_HostAddress}}/kanji?radical=骨
+Accept: application/json
+
+###
+GET {{Jisho.DesuApi_HostAddress}}/words?query=кот
+Accept: application/json
+
+###
+GET {{Jisho.DesuApi_HostAddress}}/words?query=じしょ
+Accept: application/json

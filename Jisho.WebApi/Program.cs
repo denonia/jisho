@@ -55,8 +55,6 @@ public class Program
 
         app.UseCors(options => options.AllowAnyOrigin());
 
-        app.UseHttpsRedirection();
-
         app.UseAuthorization();
 
 

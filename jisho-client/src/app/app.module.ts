@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { SentencesModule } from './sentences/sentences.module';
 import { WordsModule } from './words/words.module';
+import { KanjiModule } from './kanji/kanji.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { WordsModule } from './words/words.module';
     AppRoutingModule,
     WordsModule,
     SentencesModule,
+    KanjiModule
   ],
   providers: [],
   bootstrap: [AppComponent]

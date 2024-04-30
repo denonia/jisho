@@ -1,0 +1,62 @@
+<div class="flex">
+  <span class="text-7xl">
+    {{ kanji.literal }}
+  </span>
+
+  <div class="flex-col ml-2 mb-2">
+    <div class="flex">
+      <div *ngFor="let radical of kanji.radicalDecomposition">
+        <a
+          [routerLink]="['.']"
+          [queryParams]="{ radicals: radical }"
+          class="font-medium text-blue-800 dark:text-blue-400 hover:underline ml-1">
+          {{ radical }}
+        </a>
+      </div>
+    </div>
+    <div class="flex flex-wrap">
+      <span>On: </span>
+      <div class="flex" *ngFor="let reading of onReadings()">
+        <a
+          [routerLink]="['/words']"
+          [queryParams]="{ query: reading.value }"
+          class="font-medium text-blue-800 dark:text-blue-400 hover:underline ml-1">
+          {{ reading.value }}
+        </a>
+      </div>
+    </div>
+    <div class="flex flex-wrap">
+      <span>Kun: </span>
+      <div class="flex" *ngFor="let reading of kunReadings()">
+        <a
+          [routerLink]="['/words']"
+          [queryParams]="{ query: reading.value }"
+          class="font-medium text-blue-800 dark:text-blue-400 hover:underline ml-1">
+          {{ reading.value }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="grid grid-cols-2">
+  <div class="flex mb-2" *ngFor="let meaning of kanji.meanings">
+    <img
+      alt="United States"
+      [src]="countryFlagUrl(meaning.language.twoLetterCode)"
+      width="20" height="12"/>
+    <span class="ml-1 text-xs">
+  {{ meaning.term }}
+  </span>
+  </div>
+</div>
+
+<div class="flex mb-2" *ngFor="let reading of kanji.readings">
+  {{ readingDisplayName(reading.type.code) }}
+  {{ reading.value }}
+</div>
+
+<a
+  [routerLink]="['/words']"
+  [queryParams]="{ query: kanji.literal }"
+  class="font-medium text-blue-800 dark:text-blue-400 hover:underline">
+  Words containing this kanji</a>
