@@ -2,7 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C405E632-4C76-4E37-BDCA-8FA691D4A136}"
 	ProjectSection(SolutionItems) = preProject
-		docker-compose.yml = docker-compose.yml
+		docker-compose.yml.example = docker-compose.yml.example
+		jitendex-yomitan-2024-04-21.zip = jitendex-yomitan-2024-04-21.zip
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jisho.WebApi", "Jisho.WebApi\Jisho.WebApi.csproj", "{397D68DA-3E83-4954-A341-4C042B2AE038}"

@@ -1,0 +1,50 @@
+﻿services:
+  jisho.webapi:
+    image: jisho.webapi
+    restart: always
+    build:
+      context: .
+      dockerfile: Jisho.WebApi/Dockerfile
+    ports:
+      - 5284:5284
+    depends_on:
+     - jisho.db
+    environment:
+      - YomichanDictionaryPath=/jitendex-yomitan-2024-04-21.zip
+      - ConnectionStrings__DefaultConnection=Host=jisho.db;Database=jisho;Username=jisho_user;Password=password
+      - ASPNETCORE_ENVIRONMENT=Release
+      - ASPNETCORE_URLS=http://+:5284
+    volumes:
+      - ./jitendex-yomitan-2024-04-21.zip:/jitendex-yomitan-2024-04-21.zip
+  jisho.desuapi:
+    image: jisho.desuapi
+    restart: always
+    build:
+      context: .
+      dockerfile: Jisho.DesuApi/Dockerfile
+    ports:
+      - 5043:5043
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Release
+      - ASPNETCORE_URLS=http://+:5043
+  jisho.client:
+    restart: always
+    build:
+      context: jisho-client
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+  jisho.db:
+    image: postgres:14-alpine
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - jisho-db-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=jisho_user
+      - POSTGRES_DB=jisho
+
+volumes:
+  jisho-db-data:

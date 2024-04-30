@@ -1,0 +1,16 @@
+.entry {
+  border: 1px groove #808080;
+  padding: 20px;
+}
+
+.entry:nth-child(even) {
+  border-left: 0;
+}
+
+.entry:nth-child(n+3) {
+  border-top: 0;
+}
+
+.entry:last-child {
+  border-bottom: 1px groove #808080;
+}

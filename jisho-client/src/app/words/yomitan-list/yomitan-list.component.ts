@@ -1,16 +1,16 @@
 import {Component, inject, input, ViewEncapsulation} from '@angular/core';
 import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 import { TemplateService } from '../../services/template.service';
-import { DictionaryEntry } from '../../models/dictionary-entry.model';
+import { YomitanEntry } from '../../models/yomitan-entry.model';
 
 @Component({
-  selector: 'app-words-list',
-  templateUrl: './words-list.component.html',
-  styleUrl: './words-list.component.css',
+  selector: 'app-yomitan-list',
+  templateUrl: './yomitan-list.component.html',
+  styleUrl: './yomitan-list.component.css',
   encapsulation: ViewEncapsulation.ShadowDom
 })
-export class WordsListComponent {
-  wordsList = input.required<DictionaryEntry[] | null>();
+export class YomitanListComponent {
+  wordsList = input.required<YomitanEntry[] | null>();
 
   template = inject(TemplateService);
   sanitizer = inject(DomSanitizer);

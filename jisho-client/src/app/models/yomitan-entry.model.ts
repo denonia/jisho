@@ -1,5 +1,5 @@
 
-export interface DictionaryEntry {
+export interface YomitanEntry {
   term: string;
   reading: string;
   tags: string;

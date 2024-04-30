@@ -9,18 +9,13 @@
 
     <ItemGroup>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
+        <PackageReference Include="Wacton.Desu" Version="6.2.0" />
     </ItemGroup>
 
     <ItemGroup>
       <Content Include="..\.dockerignore">
         <Link>.dockerignore</Link>
       </Content>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Reference Include="Wacton.Desu">
-        <HintPath>..\..\..\.nuget\packages\wacton.desu\6.2.0\lib\netstandard2.0\Wacton.Desu.dll</HintPath>
-      </Reference>
     </ItemGroup>
 
 </Project>

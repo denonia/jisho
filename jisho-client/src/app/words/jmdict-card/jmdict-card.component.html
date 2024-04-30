@@ -1,0 +1,76 @@
+<div class="entry">
+  <div class="flex flex-wrap">
+    <p class="text-4xl">
+      {{ primaryReading() }}
+    </p>
+
+    <span class="ml-2 text-sm"
+          *ngIf="alternativeForms() !== ''"
+    >
+      ({{ alternativeForms() }})
+    </span>
+  </div>
+
+  <p class="text-gray-500">
+    {{ readingList() }}
+  </p>
+
+  <dl class="max-w-md text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
+    <div class="flex flex-col py-2"
+         *ngFor="let sense of senses()">
+
+      <p class="font-semibold flex"
+         *ngIf="!collapsed() && sense.glosses[0].language.twoLetterCode !== 'en'">
+        <span class="mr-1">
+          {{ sense.glosses[0].language.displayName }}
+        </span>
+        <img
+          [alt]="sense.glosses[0].language.displayName"
+          [src]="countryFlagUrl(sense.glosses[0].language.twoLetterCode)"
+          width="20" height="12"/>
+      </p>
+      <div class="flex flex-wrap mb-1">
+        <div *ngFor="let partOfSpeech of sense.partsOfSpeech">
+          <span title="{{ partOfSpeech.code }}" class="part-of-speech">{{ partOfSpeech.description }}</span>
+        </div>
+        <div *ngFor="let field of sense.fields">
+          <span title="{{ field.code }}" class="field">{{ field.displayName }}</span>
+        </div>
+        <div *ngFor="let miscellanea of sense.miscellanea">
+          <span title="{{ miscellanea.code }}" class="miscellanea">{{ miscellanea.displayName }}</span>
+        </div>
+      </div>
+      <ul class="list-disc list-inside" content="glossary">
+        <li *ngFor="let gloss of sense.glosses">
+          <span class="text-md">
+              {{ gloss.term }}
+            </span>
+        </li>
+      </ul>
+      <div *ngFor="let crossReference of sense.crossReferences">
+        <div style="margin-left:0.5em;" content="extra-info">
+          <div>
+            <div class="reference-card" content="xref">
+              <div style="font-size:1.3em;"><span lang="en" style="font-size:0.8em;margin-right:0.5rem;">See:</span>
+                <a
+                  class="font-medium text-blue-800 dark:text-blue-400 hover:underline ml-1"
+                  [routerLink]="['.']"
+                  [queryParams]="{ query: crossReference }">
+                  {{ crossReference }}
+                </a></div>
+              <div style="font-size:0.8rem;" content="xref-glossary">{{ sense.glosses[0].term }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dl>
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+       class="w-6 h-6 cursor-pointer"
+       (click)="collapsed.set(!collapsed())"
+       *ngIf="otherSenses().length !== 0"
+  >
+    <path *ngIf="collapsed()" stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"/>
+    <path *ngIf="!collapsed()" stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18"/>
+  </svg>
+</div>
