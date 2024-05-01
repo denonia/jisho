@@ -24,10 +24,15 @@
 
 <div
   class="grid grid-cols-2"
-  *ngIf="(kanjiList$ | async) as kanjiList">
+  *ngIf="(kanjiList$ | async) as kanjiList; else nolist">
   <div
     class="border px-4 py-4"
     *ngFor="let kanji of kanjiList">
     <app-kanji-card [kanji]="kanji"/>
   </div>
 </div>
+
+<ng-template #nolist>
+  <p class="text-lg mt-2">Welcome to the <strong>Kanji search page.</strong></p>
+  <p class="text-lg">Select the radicals above (multiple choice is allowed) or enter kanji in the search box to proceed.</p>
+</ng-template>

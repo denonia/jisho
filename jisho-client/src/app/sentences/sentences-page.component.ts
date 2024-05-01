@@ -22,7 +22,7 @@ export class SentencesPageComponent {
     this.route.queryParams.subscribe(params => {
         this.query.set(params['query'] ?? '');
         this.page.set(parseInt(params['page']) || 1);
-        this.source.set(params['source'] ?? 'tatoeba');
+        this.source.set(params['ssource'] ?? 'tatoeba');
 
         if (this.query() != '') {
           switch (this.source()) {
@@ -46,7 +46,7 @@ export class SentencesPageComponent {
   }
 
   switchSource(source: string) {
-    this.setParams({'source': source, 'page': '1'});
+    this.setParams({'ssource': source, 'page': '1'});
   }
 
   previousPage() {

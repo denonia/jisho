@@ -30,8 +30,10 @@ export class JmdictCardComponent {
     this.collapsed() ? this.englishSenses()
       : this.englishSenses().concat(this.otherSenses()));
 
-  countryFlagUrl(code: string) {
+  countryFlagClass(code: string) {
     if (code == 'en') code = 'gb';
-    return `http://purecatamphetamine.github.io/country-flag-icons/3x2/${code.toUpperCase()}.svg`;
+    if (code == 'sv') code = 'se';
+    if (code == 'sl') code = 'si';
+    return `fi fi-${code}`;
   }
 }

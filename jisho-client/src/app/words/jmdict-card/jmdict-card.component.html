@@ -24,10 +24,7 @@
         <span class="mr-1">
           {{ sense.glosses[0].language.displayName }}
         </span>
-        <img
-          [alt]="sense.glosses[0].language.displayName"
-          [src]="countryFlagUrl(sense.glosses[0].language.twoLetterCode)"
-          width="20" height="12"/>
+        <span [class]="countryFlagClass(sense.glosses[0].language.twoLetterCode)"></span>
       </p>
       <div class="flex flex-wrap mb-1">
         <div *ngFor="let partOfSpeech of sense.partsOfSpeech">

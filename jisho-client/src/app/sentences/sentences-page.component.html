@@ -37,7 +37,7 @@
   </a>
 </div>
 
-<div *ngIf="query() != ''">
+<div *ngIf="query() != ''; else nolist">
   <div *ngIf="(sentencesList$ | async) as sentencesList; else loading">
     <app-sentences-list
       [sentencesList]="sentencesList"
@@ -60,3 +60,10 @@
   </ng-template>
 </div>
 
+<ng-template #nolist>
+  <div class="text-lg mt-2">
+    <p>Welcome to the <strong>Sentences search page.</strong></p>
+    <p>Enter the Japanese word or phrase you would like to study in context.</p>
+    <p>Reverso search probably won't work on the production server so it's kinda unlucky.</p>
+  </div>
+</ng-template>

@@ -1,0 +1,12 @@
+.jlpt-level {
+  font-size: 0.8em;
+  font-weight: bold;
+  word-break: keep-all;
+  border-radius: 0.3em;
+  vertical-align: text-bottom;
+  background-color: #87ceeb;
+  color: black;
+  cursor: help;
+  margin-right: 0.25em;
+  padding: 0.2em 0.5em;
+}
