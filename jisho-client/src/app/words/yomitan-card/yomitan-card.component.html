@@ -1,0 +1,6 @@
+<div class="entry">
+  <dt class="term">{{ entry.term }}</dt>
+  <dd class="reading">{{ entry.reading }}</dd>
+
+  <div [innerHTML]="renderDefinitions(entry.definitions)"></div>
+</div>

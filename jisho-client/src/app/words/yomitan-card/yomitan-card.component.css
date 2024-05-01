@@ -4,16 +4,6 @@
   --separator-color1: #cccccc;
 }
 
-.entry {
-  border: 1px groove #808080;
-  border-bottom: 0;
-  padding: 20px;
-}
-
-.entry:last-child {
-  border-bottom: 1px groove #808080;
-}
-
 .term {
   font-size: 2.25rem;
   line-height: 2.5rem;
@@ -64,3 +54,14 @@ th, td {
   padding: 0.25em;
   vertical-align: top;
 }
+
+.entry {
+  border: 1px groove #808080;
+  border-bottom: 0;
+  padding: 20px;
+}
+
+.entry:last-child {
+  border-bottom: 1px groove #808080;
+}
+

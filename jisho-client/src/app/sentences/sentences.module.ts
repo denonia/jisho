@@ -4,6 +4,7 @@ import { SentencesPageComponent } from './sentences-page.component';
 import {HttpClientModule} from "@angular/common/http";
 import { FormsModule } from '@angular/forms';
 import { SentencesListComponent } from './sentences-list/sentences-list.component';
+import { UiModule } from '../ui/ui.module';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { SentencesListComponent } from './sentences-list/sentences-list.componen
   imports: [
     CommonModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    UiModule
   ]
 })
 export class SentencesModule { }
